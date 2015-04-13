@@ -1,12 +1,25 @@
 {
   "name": "fai",
-  "version": "0.0.1",
-  "description": "Framework for agile development",
-  "main": "build/index.js",
-  "keywords": [],
+  "version": "0.3.1-alpha-01",
+  "description": "Framework for agile web development.",
+  "main": "build",
+  "keywords": ["framework","jade","stylus","es7"],
   "author": "Héctor Menéndez <etor@gik.mx> (http://gik.mx)",
   "license": "MIT",
+  "homepage": "https://github.com/gikmx/fai",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/gikmx/fai.git"
+  },
+  "os":["darwin","linux"],
+  "engines":{
+    "node":">= 0.12.x"
+  },
+  "bugs": {
+    "url": "https://github.com/gikmx/fai/issues"
+  },
   "scripts": {
+    "prepublish": "gulp build",
     "test": "gulp test",
     "build": "gulp build",
     "watch": "gulp watch"

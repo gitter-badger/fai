@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.sublime-*",
+				"gulpfile.js",
+				".gitignore",
+				".npmignore",
+				".travis.yml",
+				"npm-debug.log",
+				".git"
+			],
+			"folder_exclude_patterns":
+			[
+				"build",
+				"node_modules",
+				"coverage"
+			],
+			"path": "."
+		}
+	]
+}
