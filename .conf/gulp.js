@@ -13,15 +13,15 @@ const SrcSup = require('gulp-sourcemaps-support');
 const Babel  = require('gulp-babel');
 const Mocha  = require('gulp-spawn-mocha');
 const Watch  = require('gulp-watch');
+const Docs   = require('gulp-fai-doc');
 const Del    = require('del');
 const Chalk  = require('chalk');
-
 
 //------------------------------------------------------------------------- PATHS & ROUTES
 
 const Dir = new String(Path.resolve(Path.join(__dirname, '..')));
 
-for (let dir of ['src', 'test', 'build', '.conf', 'coverage'])
+for (let dir of ['src', 'test', 'docs', 'build', '.conf', 'coverage'])
 	Object.defineProperty(Dir, dir, {
 		value        : Path.join(String(Dir), dir),
 		writable     : false,
@@ -76,6 +76,11 @@ Config.mocha = {
 
 //---------------------------------------------------------------------------------- TASKS
 
+
+Gulp.task('clean-docs', function(callback){
+	Del([Dir.docs], callback);
+});
+
 Gulp.task('clean', function(callback){
 	Del([Dir.build, Dir.coverage], callback);
 });
@@ -106,7 +111,13 @@ Gulp.task('test', ['lint-test', 'build'], ()=>
 		.pipe(Mocha(Config.mocha))
 );
 
-Gulp.task('build', ['clean', 'lint'], function(){
+Gulp.task('docs', ['clean-docs'], function(){
+	return Gulp.src(Route.src)
+		.pipe(Docs())
+		.pipe(Gulp.dest(Dir.docs));
+});
+
+Gulp.task('build', ['clean', 'lint', 'docs'], function(){
 	return Gulp.src(Route.src)
 		.pipe(SrcSup())
 		.pipe(Source.init())

@@ -16,7 +16,8 @@
 			[
 				"build",
 				"node_modules",
-				"coverage"
+				"coverage",
+				"docs"
 			],
 			"path": "."
 		}
